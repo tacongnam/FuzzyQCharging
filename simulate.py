@@ -4,7 +4,7 @@ import random
 import pickle
 import os
 from ast import literal_eval
-from scipy import mean
+import numpy as np
 from scipy.stats import sem, t
 from tabulate import tabulate
 
@@ -65,7 +65,7 @@ def start_simulating():
     energy_max = df.energy[experiment_index]
     node_pos = list(literal_eval(df.node_pos[experiment_index]))
     life_time = []
-    for nb_run in range(3):
+    for nb_run in range(1):
         random.seed(nb_run)
 
         # Initialize Sensor Nodes
@@ -114,7 +114,7 @@ def start_simulating():
 
     confidence = 0.95
     h = sem(life_time) * t.ppf((1 + confidence) / 2, len(life_time) - 1)
-    result.writerow({"nb_run": mean(life_time), "lifetime": h, "dead_node": 0})
+    result.writerow({"nb_run": np.mean(life_time), "lifetime": h, "dead_node": 0})
 
 def resume_simulating():
     print('[Simulator] Resuming Experiment...')
