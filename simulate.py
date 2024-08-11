@@ -65,7 +65,7 @@ def start_simulating():
     energy_max = df.energy[experiment_index]
     node_pos = list(literal_eval(df.node_pos[experiment_index]))
     life_time = []
-    for nb_run in range(1):
+    for nb_run in range(5):
         random.seed(nb_run)
 
         # Initialize Sensor Nodes
